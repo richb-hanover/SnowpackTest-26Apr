@@ -1,24 +1,64 @@
-# New Project
+# Starting new Snowpack project
 
-> ✨ Bootstrapped with Create Snowpack App (CSA).
+* On 26 Apr 2021, use npx with a blank typescript template to create  new project.
 
-## Available Scripts
+* By default, this installs Snowpack 3.0.1. This generates the deprecated warnings (below).
 
-### npm start
+* Manually changing to Snowpack 3.3.4 in the package.json file removes these warnings. The project seems to run fine.
 
-Runs the app in the development mode.
-Open http://localhost:8080 to view it in the browser.
+* Using `yarn start`, see the second set (below) of Rollup warnings about *preventAssignment* even though the project doesn't use Rollup.
 
-The page will reload if you make edits.
-You will also see any lint errors in the console.
+```
+√ github % npx create-snowpack-app test26mar --template @snowpack/app-template-blank-typescript --use-yarn
+npx: installed 24 in 2.795s
 
-### npm run build
+  - Using template @snowpack/app-template-blank-typescript
+  - Creating a new project in /Users/richb/github/test26mar
+  - Installing package dependencies. This might take a couple of minutes.
 
-Builds a static copy of your site to the `build/` folder.
-Your app is ready to be deployed!
+warning package.json: No license field
+warning ../package.json: No license field
+warning No license field
+warning snowpack > rollup > fsevents@2.1.3: "Please update to latest v2.3 or v2.2"
+warning snowpack > pacote > @npmcli/run-script > node-gyp > request@2.88.2: request has been deprecated, see https://github.com/request/request/issues/3142
+warning snowpack > pacote > @npmcli/run-script > node-gyp > request > har-validator@5.1.5: this library is no longer supported
 
-**For the best production performance:** Add a build bundler plugin like [@snowpack/plugin-webpack](https://github.com/snowpackjs/snowpack/tree/main/plugins/plugin-webpack) or [snowpack-plugin-rollup-bundle](https://github.com/ParamagicDev/snowpack-plugin-rollup-bundle) to your `snowpack.config.json` config file.
+  - Initializing git repo.
 
-### Q: What about Eject?
+  - Success!
 
-No eject needed! Snowpack guarantees zero lock-in, and CSA strives for the same.
+Quickstart:
+
+  cd test26mar
+  yarn start
+
+All Commands:
+
+  yarn install     Install your dependencies. (We already ran this one for you!)
+  yarn start       Start your development server.
+  yarn run build   Build your website for production.
+  yarn test        Run your tests.
+
+```
+
+## Error on initial start
+
+```
+√ test26mar % yarn start
+yarn run v1.22.10
+warning package.json: No license field
+warning ../package.json: No license field
+$ snowpack dev
+[22:14:17] [snowpack] Welcome to Snowpack! Because this is your first time running
+this project, Snowpack needs to prepare your dependencies. This is a one-time step
+and the results will be cached for the lifetime of your project. Please wait...
+[22:14:17] [snowpack] + canvas-confetti@1.4.0
+[22:14:17] [esinstall:canvas-confetti] @rollup/plugin-replace: 'preventAssignment' currently defaults to false. It is recommended to set this option to `true`, as the next major version will default this option to `true`.
+[22:14:17] [snowpack] Ready!
+[22:14:17] [snowpack] Server started in 16ms.
+[22:14:17] [snowpack] Local: http://localhost:8080
+[22:14:17] [snowpack] Network: http://192.168.253.116:8080
+[22:14:18] [@snowpack/plugin-typescript] 9:13:18 PM - Starting compilation in watch mode...
+[22:14:19] [@snowpack/plugin-typescript] 9:13:19 PM - Found 0 errors. Watching for file changes.
+⠏ watching for file changes...^C
+```
